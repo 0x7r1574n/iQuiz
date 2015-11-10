@@ -11,7 +11,7 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [("Mathematics", "Some calculation"), ("Marvel Super Heroes", "Character matching"), ("Science", "What you learned in high school")]
+    var quizzes = [Quiz(title: "Mathematics", description: "Some calculation", questions: []), Quiz(title: "Marvel Super Heroes", description: "Character matching", questions: []), Quiz(title: "Science", description: "What you learned in high school", questions: [])]
 
 
     override func viewDidLoad() {
@@ -50,9 +50,9 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row]
+                let object = quizzes[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object.0
+                controller.detailItem = object.title
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -66,14 +66,14 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return quizzes.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        let object = objects[indexPath.row]
-        cell.textLabel!.text = object.0
-        cell.detailTextLabel!.text = object.1
+        let object = quizzes[indexPath.row]
+        cell.textLabel!.text = object.title
+        cell.detailTextLabel!.text = object.description
         return cell
     }
 

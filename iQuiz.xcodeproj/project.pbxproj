@@ -13,6 +13,10 @@
 		2C4D33E31BE9C15200114BB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4D33E11BE9C15200114BB5 /* Main.storyboard */; };
 		2C4D33E51BE9C15200114BB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4D33E41BE9C15200114BB5 /* Assets.xcassets */; };
 		2C4D33E81BE9C15200114BB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4D33E61BE9C15200114BB5 /* LaunchScreen.storyboard */; };
+		2C579A141BF21BBE00D994B4 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C579A131BF21BBE00D994B4 /* Question.swift */; };
+		2C579A161BF21CD800D994B4 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C579A151BF21CD800D994B4 /* Quiz.swift */; };
+		2C579A1B1BF2279300D994B4 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C579A1A1BF2279300D994B4 /* AnswerViewController.swift */; };
+		2C579A1D1BF227CC00D994B4 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C579A1C1BF227CC00D994B4 /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		2C4D33E41BE9C15200114BB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C4D33E71BE9C15200114BB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C4D33E91BE9C15200114BB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C579A131BF21BBE00D994B4 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		2C579A151BF21CD800D994B4 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		2C579A1A1BF2279300D994B4 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
+		2C579A1C1BF227CC00D994B4 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +67,24 @@
 				2C4D33DB1BE9C15200114BB5 /* AppDelegate.swift */,
 				2C4D33DD1BE9C15200114BB5 /* MasterViewController.swift */,
 				2C4D33DF1BE9C15200114BB5 /* DetailViewController.swift */,
+				2C579A1A1BF2279300D994B4 /* AnswerViewController.swift */,
+				2C579A1C1BF227CC00D994B4 /* ResultViewController.swift */,
 				2C4D33E11BE9C15200114BB5 /* Main.storyboard */,
+				2C579A171BF21D6700D994B4 /* Supporting Files */,
+			);
+			path = iQuiz;
+			sourceTree = "<group>";
+		};
+		2C579A171BF21D6700D994B4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				2C4D33E41BE9C15200114BB5 /* Assets.xcassets */,
 				2C4D33E61BE9C15200114BB5 /* LaunchScreen.storyboard */,
 				2C4D33E91BE9C15200114BB5 /* Info.plist */,
+				2C579A131BF21BBE00D994B4 /* Question.swift */,
+				2C579A151BF21CD800D994B4 /* Quiz.swift */,
 			);
-			path = iQuiz;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +159,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C579A1B1BF2279300D994B4 /* AnswerViewController.swift in Sources */,
 				2C4D33E01BE9C15200114BB5 /* DetailViewController.swift in Sources */,
+				2C579A1D1BF227CC00D994B4 /* ResultViewController.swift in Sources */,
+				2C579A161BF21CD800D994B4 /* Quiz.swift in Sources */,
+				2C579A141BF21BBE00D994B4 /* Question.swift in Sources */,
 				2C4D33DE1BE9C15200114BB5 /* MasterViewController.swift in Sources */,
 				2C4D33DC1BE9C15200114BB5 /* AppDelegate.swift in Sources */,
 			);
@@ -295,6 +319,7 @@
 				2C4D33EE1BE9C15200114BB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
