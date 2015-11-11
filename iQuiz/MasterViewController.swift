@@ -11,7 +11,7 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var quizzes = [Quiz(title: "Mathematics", description: "Some calculation", questions: []), Quiz(title: "Marvel Super Heroes", description: "Character matching", questions: []), Quiz(title: "Science", description: "What you learned in high school", questions: [])]
+    var quizzes = [Quiz(title: "Mathematics", description: "Some calculation", questions: [Question(question: "1+1", answer: "2", choices: ["1", "2", "3", "4"]), Question(question: "2+2", answer: "4", choices: ["1", "2", "3", "4"]), Question(question: "2*2", answer: "4", choices: ["1", "2", "3", "4"])]), Quiz(title: "Marvel Super Heroes", description: "Character matching", questions: [Question(question: "Who is Tony Stark?", answer: "Iron Man", choices: ["Spiderman", "Batman", "Iron Man", "Baymax"]), Question(question: "Who is the alter-ego for Spiderman?", answer: "Peter Parker", choices: ["Tony Stark", "Steve Rogers", "Johnny Storm", "Peter Parker"]), Question(question: "Who is Steve Rogers?", answer: "Captain America", choices: ["Iron Man", "Superman", "Spiderman", "Captain America"])]), Quiz(title: "Science", description: "What you learned in high school", questions: [Question(question: "What is the chemical equation for water?", answer: "H2O", choices: ["H2", "O2", "H2O", "CO2"]), Question(question: "Which is not a valid chemical element?", answer: "Xp", choices: ["Xp", "S", "Ca", "P"]), Question(question: "Which one is radioactive?", answer: "Ra", choices: ["Ra", "H", "He", "O"])])]
 
 
     override func viewDidLoad() {
@@ -22,6 +22,7 @@ class MasterViewController: UITableViewController {
 
         let settingsButton = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: "popupSettingsAlert:")
         self.navigationItem.rightBarButtonItem = settingsButton
+        self.navigationItem.leftItemsSupplementBackButton = false
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -52,9 +53,9 @@ class MasterViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let object = quizzes[indexPath.row]
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object.title
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
+                controller.navigationItem.hidesBackButton = true
+                controller.navigationItem.title = object.title
+                controller.quiz = object
             }
         }
     }

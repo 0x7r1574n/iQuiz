@@ -9,9 +9,17 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var choiceSegments: UISegmentedControl!
+    @IBOutlet weak var submitButton: UIBarButtonItem!
+    
+    var quiz = Quiz(title: "", description: "", questions: [])
+    
+    var questionIndex = 0
+    var selectedIndex = 0
+    var score = 0
+    var count = 0
 
     var detailItem: AnyObject? {
         didSet {
@@ -22,11 +30,18 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
+        let question = self.quiz.questions[questionIndex]
+        self.questionLabel.text = question.question
+        for i in 0...3 {
+            choiceSegments.setTitle(question.choices[i], forSegmentAtIndex: i)
         }
+        self.submitButton.enabled = false
+    }
+    
+    
+    @IBAction func selectChoice(sender: UISegmentedControl) {
+        self.selectedIndex = sender.selectedSegmentIndex
+        self.submitButton.enabled = true
     }
 
     override func viewDidLoad() {
@@ -38,6 +53,21 @@ class DetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "quitQuiz" {
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MasterViewController
+            controller.navigationItem.hidesBackButton = true
+        } else {
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! AnswerViewController
+            let question = self.quiz.questions[questionIndex]
+            controller.isCorrect = (question.choices[selectedIndex] == question.answer)
+            controller.questionIndex = self.questionIndex
+            controller.quiz = self.quiz
+            controller.score = self.score
+            controller.count = self.count
+        }
     }
 
 
