@@ -11,8 +11,11 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var quizzes = [Quiz(title: "Mathematics", description: "Some calculation", questions: [Question(question: "1+1", answer: "2", choices: ["1", "2", "3", "4"]), Question(question: "2+2", answer: "4", choices: ["1", "2", "3", "4"]), Question(question: "2*2", answer: "4", choices: ["1", "2", "3", "4"])]), Quiz(title: "Marvel Super Heroes", description: "Character matching", questions: [Question(question: "Who is Tony Stark?", answer: "Iron Man", choices: ["Spiderman", "Batman", "Iron Man", "Baymax"]), Question(question: "Who is the alter-ego for Spiderman?", answer: "Peter Parker", choices: ["Tony Stark", "Steve Rogers", "Johnny Storm", "Peter Parker"]), Question(question: "Who is Steve Rogers?", answer: "Captain America", choices: ["Iron Man", "Superman", "Spiderman", "Captain America"])]), Quiz(title: "Science", description: "What you learned in high school", questions: [Question(question: "What is the chemical equation for water?", answer: "H2O", choices: ["H2", "O2", "H2O", "CO2"]), Question(question: "Which is not a valid chemical element?", answer: "Xp", choices: ["Xp", "S", "Ca", "P"]), Question(question: "Which one is radioactive?", answer: "Ra", choices: ["Ra", "H", "He", "O"])])]
-
+    var quizzes: [Quiz] = []
+    
+    struct defaultsKeys {
+        static let localStorageKey = "LocalStorageKey"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +23,19 @@ class MasterViewController: UITableViewController {
         // Visually removes empty cells
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 
-        let settingsButton = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: "popupSettingsAlert:")
-        self.navigationItem.rightBarButtonItem = settingsButton
         self.navigationItem.leftItemsSupplementBackButton = false
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+        }
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let stringOne = defaults.stringForKey(defaultsKeys.localStorageKey) {
+            parseData(stringOne)
+            print("LOADING FROM LOCAL STORAGE") //for test use only
+        } else {
+            print("LOADING DATA FROM ONLINE") // for test use only
+            self.downloadData("https://tednewardsandbox.site44.com/questions.json")
         }
     }
 
@@ -37,13 +47,6 @@ class MasterViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func popupSettingsAlert(sender: AnyObject) {
-        let alert = UIAlertController(title: "Settings", message: "Settings go here", preferredStyle: UIAlertControllerStyle.Alert)
-        let confirmAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-        alert.addAction(confirmAction)
-        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     // MARK: - Segues
@@ -76,6 +79,50 @@ class MasterViewController: UITableViewController {
         cell.textLabel!.text = object.title
         cell.detailTextLabel!.text = object.description
         return cell
+    }
+    
+    @IBAction func unwindSegue(segue: UIStoryboardSegue) {
+        return
+    }
+    
+    func downloadData(url: String) {
+        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfig)
+        let URL = NSURL(string: url)
+        let request = NSMutableURLRequest(URL: URL!)
+        request.HTTPMethod = "GET"
+        let task = session.dataTaskWithRequest(request) {
+            (data, response, error) -> Void in
+            do {
+                let value = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! [AnyObject]
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setValue(String(value), forKey: defaultsKeys.localStorageKey) //storing the content
+                defaults.synchronize() //you can store multiple lines at once but then it synchornizes, saving the data
+                self.parseData(value)
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
+        self.tableView.reloadData()
+    }
+    
+    func parseData(data: AnyObject) {
+        let json = JSON(data)
+        let data = json.array
+        for quiz in data! {
+            var newQuiz: Quiz = Quiz(title: "", description: "", questions: [])
+            newQuiz.title = quiz["title"].stringValue
+            newQuiz.description = quiz["desc"].stringValue
+            for questionKeys in quiz["questions"].array! {
+                var question = Question(question: questionKeys["text"].stringValue, answer: questionKeys["answer"].stringValue, choices: [])
+                for choice in questionKeys["answers"].array! {
+                    question.choices.append(choice.stringValue)
+                }
+                newQuiz.questions.append(question)
+            }
+            self.quizzes.append(newQuiz)
+        }
     }
 
 }

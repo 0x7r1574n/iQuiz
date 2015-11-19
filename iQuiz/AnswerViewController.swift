@@ -24,16 +24,17 @@ class AnswerViewController: UIViewController {
         super.viewDidLoad()
 
         self.questionLabel.text = self.quiz.questions[self.questionIndex].question
+        let question = self.quiz.questions[self.questionIndex]
         // Do any additional setup after loading the view.
         if self.isCorrect {
             self.resultLabel.text = "Correct! :)"
             self.resultLabel.textColor = UIColor.greenColor()
-            self.correctAnswerLabel.text = "\(self.quiz.questions[self.questionIndex].answer) is the correct answer!"
+            self.correctAnswerLabel.text = "\(question.choices[Int(question.answer)!]) is the correct answer!"
             self.score++
         } else {
             self.resultLabel.text = "Incorrect! :("
             self.resultLabel.textColor = UIColor.redColor()
-            self.correctAnswerLabel.text = "Correct answer is \(self.quiz.questions[self.questionIndex].answer)."
+            self.correctAnswerLabel.text = "Correct answer is \(question.choices[Int(question.answer)!])."
         }
         self.count++
             }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3426481BFDEFA500F96B92 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3426471BFDEFA500F96B92 /* SettingsViewController.swift */; };
 		2C4D33DC1BE9C15200114BB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D33DB1BE9C15200114BB5 /* AppDelegate.swift */; };
 		2C4D33DE1BE9C15200114BB5 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D33DD1BE9C15200114BB5 /* MasterViewController.swift */; };
 		2C4D33E01BE9C15200114BB5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D33DF1BE9C15200114BB5 /* DetailViewController.swift */; };
@@ -17,9 +18,11 @@
 		2C579A161BF21CD800D994B4 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C579A151BF21CD800D994B4 /* Quiz.swift */; };
 		2C579A1B1BF2279300D994B4 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C579A1A1BF2279300D994B4 /* AnswerViewController.swift */; };
 		2C579A1D1BF227CC00D994B4 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C579A1C1BF227CC00D994B4 /* ResultViewController.swift */; };
+		2C7E99951BFE168F00943305 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E99941BFE168F00943305 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C3426471BFDEFA500F96B92 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2C4D33D81BE9C15200114BB5 /* iQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4D33DB1BE9C15200114BB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4D33DD1BE9C15200114BB5 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +35,7 @@
 		2C579A151BF21CD800D994B4 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		2C579A1A1BF2279300D994B4 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		2C579A1C1BF227CC00D994B4 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		2C7E99941BFE168F00943305 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 		2C4D33DA1BE9C15200114BB5 /* iQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				2C3426471BFDEFA500F96B92 /* SettingsViewController.swift */,
 				2C4D33DB1BE9C15200114BB5 /* AppDelegate.swift */,
 				2C4D33DD1BE9C15200114BB5 /* MasterViewController.swift */,
 				2C4D33DF1BE9C15200114BB5 /* DetailViewController.swift */,
@@ -78,6 +83,7 @@
 		2C579A171BF21D6700D994B4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2C7E99941BFE168F00943305 /* SwiftyJSON.swift */,
 				2C4D33E41BE9C15200114BB5 /* Assets.xcassets */,
 				2C4D33E61BE9C15200114BB5 /* LaunchScreen.storyboard */,
 				2C4D33E91BE9C15200114BB5 /* Info.plist */,
@@ -165,7 +171,9 @@
 				2C579A161BF21CD800D994B4 /* Quiz.swift in Sources */,
 				2C579A141BF21BBE00D994B4 /* Question.swift in Sources */,
 				2C4D33DE1BE9C15200114BB5 /* MasterViewController.swift in Sources */,
+				2C7E99951BFE168F00943305 /* SwiftyJSON.swift in Sources */,
 				2C4D33DC1BE9C15200114BB5 /* AppDelegate.swift in Sources */,
+				2C3426481BFDEFA500F96B92 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -62,7 +62,7 @@ class DetailViewController: UIViewController {
         } else {
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! AnswerViewController
             let question = self.quiz.questions[questionIndex]
-            controller.isCorrect = (question.choices[selectedIndex] == question.answer)
+            controller.isCorrect = (selectedIndex == Int(question.answer)! - 1)
             controller.questionIndex = self.questionIndex
             controller.quiz = self.quiz
             controller.score = self.score
