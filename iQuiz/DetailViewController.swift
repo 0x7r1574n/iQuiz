@@ -56,10 +56,7 @@ class DetailViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "quitQuiz" {
-            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MasterViewController
-            controller.navigationItem.hidesBackButton = true
-        } else {
+        if segue.identifier == "goToAnswer" {
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! AnswerViewController
             let question = self.quiz.questions[questionIndex]
             controller.isCorrect = (selectedIndex == Int(question.answer)! - 1)

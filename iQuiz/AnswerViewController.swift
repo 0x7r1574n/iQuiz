@@ -73,10 +73,6 @@ class AnswerViewController: UIViewController {
             controller.score = self.score
             controller.questionIndex = self.questionIndex
         }
-        else if segue.identifier == "quitQuiz" {
-            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MasterViewController
-            controller.navigationItem.hidesBackButton = true
-        }
     }
     
 }

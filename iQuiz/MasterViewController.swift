@@ -12,10 +12,6 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var quizzes: [Quiz] = []
-    
-    struct defaultsKeys {
-        static let localStorageKey = "LocalStorageKey"
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +25,22 @@ class MasterViewController: UITableViewController {
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let stringOne = defaults.stringForKey(defaultsKeys.localStorageKey) {
-            parseData(stringOne)
-            print("LOADING FROM LOCAL STORAGE") //for test use only
-        } else {
-            print("LOADING DATA FROM ONLINE") // for test use only
+//        let defaults = NSUserDefaults.standardUserDefaults()
+//        if let jsonString = defaults.stringForKey("LocalStorageKey") {
+//            if let json = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+//                do {
+//                    let jsonData = try NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.AllowFragments) as! [AnyObject]
+//                    self.parseData(jsonData)
+//                    defaults.synchronize()
+//                } catch {
+//                
+//                }
+//            }
+//            print("storage")
+//        } else {
+            print("online")
             self.downloadData("https://tednewardsandbox.site44.com/questions.json")
-        }
+//        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -94,11 +98,11 @@ class MasterViewController: UITableViewController {
         let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
             do {
-                let value = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! [AnyObject]
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setValue(String(value), forKey: defaultsKeys.localStorageKey) //storing the content
-                defaults.synchronize() //you can store multiple lines at once but then it synchornizes, saving the data
-                self.parseData(value)
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! [AnyObject]
+//                let defaults = NSUserDefaults.standardUserDefaults()
+//                defaults.setValue(String(json), forKey: "LocalStorageKey")
+//                defaults.synchronize()
+                self.parseData(json)
             } catch {
                 print(error)
             }

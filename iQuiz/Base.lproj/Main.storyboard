@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjq-SQ-A75">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjq-SQ-A75">
                                 <rect key="frame" x="20" y="28" width="74" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -68,12 +68,12 @@
                     <navigationItem key="navigationItem" title="Quiz Title" id="mOI-FS-AaM">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="Pxv-cK-LLv">
                             <connections>
-                                <segue destination="RMx-3f-FxP" kind="show" identifier="quitQuiz" id="1LH-sb-Neq"/>
+                                <segue destination="vhP-Xg-ynU" kind="unwind" unwindAction="unwindSegue:" id="Ytp-Ae-GH5"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Submit" id="C6B-NK-vvC">
                             <connections>
-                                <segue destination="eT5-aH-Iaw" kind="show" id="p85-VV-fQM"/>
+                                <segue destination="eT5-aH-Iaw" kind="show" identifier="goToAnswer" id="p85-VV-fQM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -84,6 +84,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
+                <exit id="vhP-Xg-ynU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
         </scene>
@@ -143,7 +144,7 @@
                     <navigationItem key="navigationItem" id="3py-3Y-GrL">
                         <barButtonItem key="rightBarButtonItem" title="Finish" id="bHq-R2-i1g">
                             <connections>
-                                <segue destination="RMx-3f-FxP" kind="show" id="64i-g6-5VN"/>
+                                <segue destination="AvB-dK-3lE" kind="unwind" unwindAction="unwindSegue:" id="VjV-A7-UwD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -153,6 +154,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qB-lX-FTI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="AvB-dK-3lE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2138" y="-630"/>
         </scene>
@@ -168,21 +170,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZm-Ro-bMm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZm-Ro-bMm">
                                 <rect key="frame" x="276" y="57" width="48" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFT-kE-Zgy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFT-kE-Zgy">
                                 <rect key="frame" x="20" y="28" width="74" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Correct answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfu-kf-dOv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfu-kf-dOv">
                                 <rect key="frame" x="242" y="86" width="117" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -205,7 +207,7 @@
                     <navigationItem key="navigationItem" title="Answer" id="2an-rE-1mV">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="Uhc-dN-oBr">
                             <connections>
-                                <segue destination="RMx-3f-FxP" kind="show" identifier="quitQuiz" id="YmI-Tk-gC5"/>
+                                <segue destination="txd-9P-AZR" kind="unwind" unwindAction="unwindSegue:" id="XpF-zx-S1h"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="ya4-x2-eTo">
@@ -223,6 +225,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MRh-n4-moT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="txd-9P-AZR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2138" y="129"/>
         </scene>
@@ -344,11 +347,11 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
-                                            <rect key="frame" x="52" y="5" width="32" height="20"/>
+                                            <rect key="frame" x="52" y="6" width="31.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -356,7 +359,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vFx-it-Cqq">
-                                            <rect key="frame" x="52" y="25" width="41" height="14"/>
+                                            <rect key="frame" x="52" y="25.5" width="40.5" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -419,7 +422,6 @@
         <image name="Icon" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YmI-Tk-gC5"/>
-        <segue reference="6S0-TO-JiA"/>
+        <segue reference="T0R-3s-kP1"/>
     </inferredMetricsTieBreakers>
 </document>
