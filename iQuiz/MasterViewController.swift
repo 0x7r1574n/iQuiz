@@ -24,23 +24,13 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-        
-//        let defaults = NSUserDefaults.standardUserDefaults()
-//        if let jsonString = defaults.stringForKey("LocalStorageKey") {
-//            if let json = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-//                do {
-//                    let jsonData = try NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions.AllowFragments) as! [AnyObject]
-//                    self.parseData(jsonData)
-//                    defaults.synchronize()
-//                } catch {
-//                
-//                }
-//            }
-//            print("storage")
-//        } else {
-            print("online")
+        let storage = NSUserDefaults.standardUserDefaults()
+        if let json = storage.valueForKey("JSON") {
+            parseData(json)
+            self.tableView.reloadData()
+        } else {
             self.downloadData("https://tednewardsandbox.site44.com/questions.json")
-//        }
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -99,9 +89,9 @@ class MasterViewController: UITableViewController {
             (data, response, error) -> Void in
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! [AnyObject]
-//                let defaults = NSUserDefaults.standardUserDefaults()
-//                defaults.setValue(String(json), forKey: "LocalStorageKey")
-//                defaults.synchronize()
+                let storage = NSUserDefaults.standardUserDefaults()
+                storage.setObject(json, forKey: "JSON")
+                storage.synchronize()
                 self.parseData(json)
             } catch {
                 print(error)

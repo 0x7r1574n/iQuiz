@@ -29,12 +29,12 @@ class AnswerViewController: UIViewController {
         if self.isCorrect {
             self.resultLabel.text = "Correct! :)"
             self.resultLabel.textColor = UIColor.greenColor()
-            self.correctAnswerLabel.text = "\(question.choices[Int(question.answer)!]) is the correct answer!"
+            self.correctAnswerLabel.text = "\(question.choices[Int(question.answer)! - 1]) is the correct answer!"
             self.score++
         } else {
             self.resultLabel.text = "Incorrect! :("
             self.resultLabel.textColor = UIColor.redColor()
-            self.correctAnswerLabel.text = "Correct answer is \(question.choices[Int(question.answer)!])."
+            self.correctAnswerLabel.text = "Correct answer is \(question.choices[Int(question.answer)! - 1])."
         }
         self.count++
             }
@@ -46,11 +46,6 @@ class AnswerViewController: UIViewController {
             self.questionIndex++
             performSegueWithIdentifier("nextQuestion", sender: self)
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Navigation
